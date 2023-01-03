@@ -1,46 +1,40 @@
-import inquirer from 'inquirer';
+import { createNewBill, listBills } from './main/handleBill.js';
+import input from './helperFunctions/input.js';
 
 
-async function input() {
-	let input = await inquirer.prompt({
-		name: ' ',
-		type: 'input',
-		// default(){
-		// 	return '';
-		// },
-	});
- 	return input[' '];
-}
 
+const dash: string = "\n============================================================\n";
+const cmds: string = `${dash}Exit: 'exit'\nNew Bill 'new bill'\nList All Bills: list all${dash}`;
+const help: string = "Enter 'help' for a list of commands or enter 'exit' to end program";
 
-class Person {
-	firstName: string
-	lastName: string
-	age: number
-	constructor(firstName: string, lastName: string, age: number) {
-		this.firstName = firstName,
-		this.lastName = lastName,
-		this.age = age;
+async function runProgram() {
+	let userInput:string = await input(help)
+	switch(userInput) {
+		case 'exit':
+			break;
+		case 'help':
+			console.log(cmds)
+			runProgram()
+			break;
+		case 'list all':
+			listBills();
+			runProgram();
+			break;
+		case 'new bill':
+			try {
+				await createNewBill();
+			}
+			 catch(e:any) {
+				console.log(e.message)
+			 }
+			runProgram();
+			break;
+		default:
+			console.log('invalid input');
+			runProgram();
+			break;
 	}
-
-	
+	return;
 }
 
-
-async function createPerson() {
-	console.log('Whats Your first name?: ')
-	const firstName: string = await input();
-
-	console.log('Whats Your Last name?')
-	const lastName: string = await input();
-
-	console.log('Whats Your age?')
-	const age: number = Number(await input());
-
-	const newPerson = new Person(firstName, lastName, age);
-
-	console.log(newPerson)
-
-}
-
-createPerson();
+runProgram();
