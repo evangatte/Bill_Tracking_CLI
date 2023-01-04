@@ -1,10 +1,10 @@
-import { createNewBill, listBills } from './main/inputOutput.js';
+import { createNewBill, listBills, deleteBill, dueSoon } from './main/handleBills.js';
 import input from './helperFunctions/input.js';
 
 
 
 const dash: string = "\n============================================================\n";
-const cmds: string = `${dash}Exit: 'exit'\nNew Bill 'new bill'\nList All Bills: list all${dash}`;
+const cmds: string = `${dash}Exit: 'exit'\nNew Bill 'new bill'\nList All Bills: list all\nDelete Bill: 'delete bill'\nDue Soon: 'due soon'${dash}`;
 const help: string = "Enter 'help' for a list of commands or enter 'exit' to end program";
 
 async function runProgram() {
@@ -16,8 +16,16 @@ async function runProgram() {
 			console.log(cmds)
 			runProgram()
 			break;
+		case 'due soon':
+			dueSoon();
+			runProgram();
+			break;
 		case 'list all':
 			listBills();
+			runProgram();
+			break;
+		case 'delete bill':
+			await deleteBill();
 			runProgram();
 			break;
 		case 'new bill':
