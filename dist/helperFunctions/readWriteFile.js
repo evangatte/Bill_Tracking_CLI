@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-const billFilePath = path.join('/Users/evangatte/Desktop/Current_Projects/TypeScript/tscPlayground', 'bills.json');
+const billFilePath = path.join('/Users/evangatte/Desktop/CLIs/tscBillCli', 'bills.json');
 function readJson() {
     let rawdata = fs.readFileSync(billFilePath, { encoding: 'utf8', flag: 'r' });
     const data = JSON.parse(rawdata.toString());

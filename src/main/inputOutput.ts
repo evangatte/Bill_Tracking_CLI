@@ -1,7 +1,7 @@
 import Bill from '../classes/Bill.js';
 import input from '../helperFunctions/input.js';
+import table from '../helperFunctions/createTable.js';
 import { readJson, writeJson } from '../helperFunctions/readWriteFile.js';
-
 
 
 export async function createNewBill() {
@@ -25,8 +25,8 @@ export async function createNewBill() {
 		} else {
 			console.log('try again');
 		}
-	
 	}
+
 
 	//push new bill into json file
 	const newBill = new Bill(billName, billAmount, dueDate, draftType)
@@ -42,20 +42,33 @@ export async function createNewBill() {
 
 
 
-
+//Print all bills to console
 export function listBills(dash: string = '') {
-	const bills = readJson();
-	// bills.expenses.forEach(function() {
-	// 	//console.log(``)
-	// })
+	const { expenses } = readJson();
 
-	console.table(bills.expenses)
 
-	const structDatas = [
-		{ handler: 'http', endpoint: 'http://localhost:3000/path', method: 'ALL' },
-		{ handler: 'event', endpoint: 'http://localhost:3000/event', method: 'POST' },
-		{ handler: 'GCS', endpoint: 'http://localhost:3000/GCS', method: 'POST' }
-	];
-	//console.table(structDatas);
+	// loop through expenses array and format them
+	const formattedArray: any = []
+	expenses.forEach(function(item: any) {
 
+		type GetBills = {
+			'Bill Name': string,
+			'Bill Amount': string,
+			'Due Date': string,
+			'Draft Type': string
+		}
+		const space = {}
+
+		const formattedObj: GetBills = {
+			'Bill Name': item.billName,
+			'Bill Amount': item.billAmount,
+			'Due Date': item.dueDate,
+			'Draft Type': item.draftType
+		}
+
+		formattedArray.push(formattedObj, space);
+	});
+	table(formattedArray)
+
+	return;
 }

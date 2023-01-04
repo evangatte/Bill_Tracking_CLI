@@ -1,5 +1,6 @@
 import Bill from '../classes/Bill.js';
 import input from '../helperFunctions/input.js';
+import table from '../helperFunctions/createTable.js';
 import { readJson, writeJson } from '../helperFunctions/readWriteFile.js';
 export async function createNewBill() {
     const billName = await input('Whats the name of this bill?');
@@ -30,12 +31,19 @@ export async function createNewBill() {
     return;
 }
 export function listBills(dash = '') {
-    const bills = readJson();
-    console.table(bills.expenses);
-    const structDatas = [
-        { handler: 'http', endpoint: 'http://localhost:3000/path', method: 'ALL' },
-        { handler: 'event', endpoint: 'http://localhost:3000/event', method: 'POST' },
-        { handler: 'GCS', endpoint: 'http://localhost:3000/GCS', method: 'POST' }
-    ];
+    const { expenses } = readJson();
+    const formattedArray = [];
+    expenses.forEach(function (item) {
+        const space = {};
+        const formattedObj = {
+            'Bill Name': item.billName,
+            'Bill Amount': item.billAmount,
+            'Due Date': item.dueDate,
+            'Draft Type': item.draftType
+        };
+        formattedArray.push(formattedObj, space);
+    });
+    table(formattedArray);
+    return;
 }
-//# sourceMappingURL=handleBill.js.map
+//# sourceMappingURL=inputOutput.js.map

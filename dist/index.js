@@ -1,4 +1,4 @@
-import { createNewBill, listBills } from './main/handleBill.js';
+import { createNewBill, listBills } from './main/inputOutput.js';
 import input from './helperFunctions/input.js';
 const dash = "\n============================================================\n";
 const cmds = `${dash}Exit: 'exit'\nNew Bill 'new bill'\nList All Bills: list all${dash}`;
