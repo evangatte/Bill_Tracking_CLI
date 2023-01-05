@@ -30,12 +30,13 @@ export async function createNewBill() {
     writeJson(bills);
     return;
 }
-export function listBills(dash = '') {
+export function listBills(tableColor = '') {
     const { expenses } = readJson();
     if (expenses.length === 0) {
         console.log('\n\nYou have no bills to list\n');
         return;
     }
+    let total = 0;
     const formattedArray = [];
     expenses.forEach(function (item, index) {
         const space = {};
@@ -44,11 +45,28 @@ export function listBills(dash = '') {
             'Bill Name': item.billName,
             'Bill Amount': item.billAmount,
             'Due Date': item.dueDate,
-            'Draft Type': item.draftType
+            'Draft Type': item.draftType,
+            'Status': item.status
         };
+        total += Number(item.billAmount);
         formattedArray.push(formattedObj, space);
     });
-    table(formattedArray);
+    if (tableColor == 'blue') {
+        table(formattedArray, 'blue');
+        console.log('\x1b[34m%s\x1b[0m', `Total: ${total}\n`);
+    }
+    else if (tableColor == 'red') {
+        table(formattedArray, 'red');
+        console.log('\x1b[31m%s\x1b[0m', `Total: ${total}\n`);
+    }
+    else if (tableColor == 'green') {
+        table(formattedArray, 'green');
+        console.log(`Total: ${total}\n`);
+    }
+    else {
+        table(formattedArray);
+        console.log(`Total: ${total}\n`);
+    }
     return;
 }
 export async function deleteBill() {
@@ -58,7 +76,7 @@ export async function deleteBill() {
         console.log('\n\nYou have no bills to delete\n');
         return;
     }
-    listBills();
+    listBills('red');
     let billIndex;
     let myBool = false;
     while (!myBool) {
@@ -71,9 +89,9 @@ export async function deleteBill() {
             billIndex = getIndex;
             myBool = true;
         }
-        else if (getIndex === 'cancel') {
+        else if (getIndex == 'cancel') {
             console.log('Invalid Input');
-            myBool = true;
+            return;
         }
     }
     const deleteOrNot = await input(`Delete: ${bills.expenses[billIndex].billName} Y/n`);
@@ -95,11 +113,85 @@ export function dueSoon() {
                 'Bill Name': item.billName,
                 'Bill Amount': item.billAmount,
                 'Due Date': item.dueDate,
-                'Draft Type': item.draftType
+                'Draft Type': item.draftType,
+                'Status': item.status
             };
             formattedArray.push(formattedObj, space);
         }
     });
-    table(formattedArray);
+    table(formattedArray, 'green');
+    console.log('\n');
+}
+export async function markPaid() {
+    const bills = readJson();
+    const expensesLength = bills.expenses.length;
+    if (expensesLength === 0) {
+        console.log('\n\nYou have no bills to mark\n');
+        return;
+    }
+    listBills('green');
+    let billIndex;
+    let myBool = false;
+    while (!myBool) {
+        let getIndex = await input('Enter the index of the bill you want to mark as paid: (or \'cancel\' to exit)');
+        if (getIndex.length === 0) {
+            console.log('invalid Input');
+        }
+        else if ((isNaN(getIndex) === false) && ((getIndex >= 0) && (getIndex <= expensesLength))) {
+            billIndex = getIndex;
+            myBool = true;
+        }
+        else if (getIndex == 'cancel') {
+            return;
+        }
+    }
+    const editOrNot = await input(`Mark: ${bills.expenses[billIndex].billName} as paid? Y/n`);
+    if (editOrNot === "Y") {
+        bills.expenses[billIndex].status = 'Paid';
+        writeJson(bills);
+    }
+    return;
+}
+export async function markUnpaid() {
+    const bills = readJson();
+    const expensesLength = bills.expenses.length;
+    if (expensesLength === 0) {
+        console.log('\n\nYou have no bills to mark\n');
+        return;
+    }
+    listBills('green');
+    let billIndex;
+    let myBool = false;
+    while (!myBool) {
+        let getIndex = await input('Enter the index of the bill you want to mark as unpaid: (or \'cancel\' to exit)');
+        if (getIndex.length === 0) {
+            console.log('invalid Input');
+        }
+        else if ((isNaN(getIndex) === false) && ((getIndex >= 0) && (getIndex <= expensesLength))) {
+            billIndex = getIndex;
+            myBool = true;
+        }
+        else if (getIndex == 'cancel') {
+            return;
+        }
+    }
+    const editOrNot = await input(`Mark: ${bills.expenses[billIndex].billName} as unpaid? Y/n`);
+    if (editOrNot === "Y") {
+        bills.expenses[billIndex].status = 'Not paid';
+        writeJson(bills);
+    }
+    return;
+}
+export async function markAllUnpaid() {
+    const bills = readJson();
+    bills.expenses.forEach(function (item) {
+        if (item.draftType === 'Manual-draft') {
+            item.status = 'Not paid';
+        }
+        else {
+            item.status = '';
+        }
+    });
+    writeJson(bills);
 }
 //# sourceMappingURL=handleBills.js.map
