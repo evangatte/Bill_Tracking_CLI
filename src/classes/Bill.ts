@@ -3,21 +3,23 @@ export default class Bill {
 	billAmount: string
 	dueDate: string
 	draftType: string
+	status: string
 	// status: string
-	constructor(billName: string, billAmount: string, dueDate: string, draftType: string) {
+	constructor(billName: string, billAmount: string, dueDate: string, draftType: string, status: string) {
 		this.billName = billName,
 		this.billAmount = billAmount,
 		this.dueDate = dueDate
 		this.draftType = draftType
-		// this.status = status
+		this.status = status
 	}
 
-	returnBill(): { billName: string; billAmount: string; dueDate: string; draftType: string } {
+	returnBill(): { billName: string, billAmount: string, dueDate: string, draftType: string, status: string } {
 		return {
 			billName: this.billName,
 			billAmount: this.billAmount,
 			dueDate: this.dueDate,
-			draftType: this.draftType
+			draftType: this.draftType,
+			status: this.status
 		}
 	}
 }

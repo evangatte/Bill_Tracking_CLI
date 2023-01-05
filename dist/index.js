@@ -1,7 +1,8 @@
 import { createNewBill, listBills, deleteBill, dueSoon, markPaid, markUnpaid, markAllUnpaid } from './main/handleBills.js';
+import { exportTest } from './main/moneyManagement.js';
 import input from './helperFunctions/input.js';
 const dash = "\n============================================================\n";
-const cmds = `${dash}Exit: 'exit'\nNew Bill 'new bill'\nList All Bills: list all\nDelete Bill: 'delete bill'\nDue Soon: 'due soon'\nMark a bill as paid: 'mark paid'\nMark bill as unpaid: 'mark unpaid'\nSync to Database: 'sync db'${dash}`;
+const cmds = `${dash}Exit: 'exit'\nNew Bill 'new bill'\nList All Bills: list all\nDelete Bill: 'delete bill'\nDue Soon: 'due soon'\nMark a bill as paid: 'mark paid'\nMark bill as unpaid: 'mark unpaid'\nSync to Database: 'sync db'\nMoney Management Menu: 'mman'${dash}`;
 const help = "Enter 'help' for a list of commands or enter 'exit' to end program";
 async function runProgram() {
     let userInput = await input(help);
@@ -47,6 +48,10 @@ async function runProgram() {
             break;
         case 'sync db':
             console.log('nope');
+            runProgram();
+            break;
+        case 'mman':
+            exportTest.myFunc('hello woefjwoe');
             runProgram();
             break;
         default:

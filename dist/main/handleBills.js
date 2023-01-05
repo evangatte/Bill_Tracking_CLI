@@ -7,6 +7,7 @@ export async function createNewBill() {
     const billAmount = await input('Whats the amount of this bill?');
     const dueDate = await input('Whats the due date?');
     let draftType = '';
+    let status = '';
     let condition = false;
     while (!condition) {
         let getDraftType = await input('Is this bill autodrafted or do you pay it manually? a/m (auto or manual)');
@@ -22,7 +23,7 @@ export async function createNewBill() {
             console.log('try again');
         }
     }
-    const newBill = new Bill(billName, billAmount, dueDate, draftType);
+    const newBill = new Bill(billName, billAmount, dueDate, draftType, status);
     const bills = readJson();
     console.log("Before: ", bills);
     bills.expenses.push(newBill.returnBill());
@@ -61,7 +62,7 @@ export function listBills(tableColor = '') {
     }
     else if (tableColor == 'green') {
         table(formattedArray, 'green');
-        console.log(`Total: ${total}\n`);
+        console.log('\x1b[32m%s\x1b[0m', `Total: ${total}\n`);
     }
     else {
         table(formattedArray);

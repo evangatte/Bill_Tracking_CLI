@@ -9,32 +9,31 @@ export async function createNewBill() {
 	const billName = await input('Whats the name of this bill?');
 	const billAmount = await input('Whats the amount of this bill?');
 	const dueDate = await input('Whats the due date?');
-
 	let draftType: string = '';
-	let condition: boolean = false
-	
+	let status: string = '';
+	let condition: boolean = false;
+
 	while (!condition) {
-		let getDraftType = await input('Is this bill autodrafted or do you pay it manually? a/m (auto or manual)')
+		let getDraftType = await input('Is this bill autodrafted or do you pay it manually? a/m (auto or manual)');
 
 		if (getDraftType === 'a') {
-			draftType = "Auto-draft"
-			condition = true
+			draftType = "Auto-draft";
+			condition = true;
 		} else if (getDraftType === 'm') {
-			draftType = 'Manual-draft'
-			condition = true
+			draftType = 'Manual-draft';
+			condition = true;
 		} else {
 			console.log('try again');
 		}
 	}
-
 	//push new bill into json file
-	const newBill = new Bill(billName, billAmount, dueDate, draftType)
+	const newBill = new Bill(billName, billAmount, dueDate, draftType, status);
 	const bills = readJson();
-	console.log("Before: ", bills)
+	console.log("Before: ", bills);
 
 	bills.expenses.push(newBill.returnBill());
 
-	console.log('After: ', bills)
+	console.log('After: ', bills);
 	writeJson(bills);
 	return;
 }
@@ -44,7 +43,6 @@ export async function createNewBill() {
 //Print all bills to console
 export function listBills(tableColor: string = '') {
 	const { expenses } = readJson();
-
 	if (expenses.length === 0) {
 		console.log('\n\nYou have no bills to list\n');
 		return;
@@ -58,7 +56,6 @@ export function listBills(tableColor: string = '') {
 		'Draft Type': string,
 		'Status': string
 	}
-
 	// loop through expenses array and format them and get total
 	let total: number = 0;
 	const formattedArray: any = [];
@@ -86,7 +83,7 @@ export function listBills(tableColor: string = '') {
 		console.log('\x1b[31m%s\x1b[0m', `Total: ${total}\n`);
 	} else if (tableColor == 'green') {
 		table(formattedArray, 'green')
-		console.log(`Total: ${total}\n`)
+		console.log('\x1b[32m%s\x1b[0m', `Total: ${total}\n`)
 	} else {
 		table(formattedArray)
 		console.log(`Total: ${total}\n`)
