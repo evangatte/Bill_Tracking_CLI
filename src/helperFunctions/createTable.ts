@@ -22,11 +22,7 @@ export default function table(input: object, tableColor: string = '') {
 	const resultLength = result.length - 2
 	const newTable = result.substring(0, resultLength)
 
-
-
-
-
-	
+	console.log()	
 
 	if (tableColor == 'green') {
 		console.log('\x1b[32m%s\x1b[0m', newTable);

@@ -82,7 +82,6 @@ export async function deleteBill() {
     let myBool = false;
     while (!myBool) {
         let getIndex = await input('Enter the index of the bill you want to delete: (or \'cancel\' to exit)');
-        console.log(getIndex.length == 0);
         if (getIndex.length === 0) {
             console.log('invalidInput');
         }
@@ -91,7 +90,6 @@ export async function deleteBill() {
             myBool = true;
         }
         else if (getIndex == 'cancel') {
-            console.log('Invalid Input');
             return;
         }
     }
