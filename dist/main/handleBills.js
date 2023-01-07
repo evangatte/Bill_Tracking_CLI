@@ -25,9 +25,7 @@ export async function createNewBill() {
     }
     const newBill = new Bill(billName, billAmount, dueDate, draftType, status);
     const bills = readJson();
-    console.log("Before: ", bills);
     bills.expenses.push(newBill.returnBill());
-    console.log('After: ', bills);
     writeJson(bills);
     return;
 }

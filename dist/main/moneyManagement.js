@@ -1,7 +1,7 @@
 import input from '../helperFunctions/input.js';
 import process from 'process';
 const dash = "\n============================================================\n";
-const cmds = `${dash}Go Back To Main Menu: 'back'\nChange Check Amount/Pay Cycle: 'handle pay'${dash}`;
+const cmds = `${dash}Go Back To Main Menu: 'back'\nExit Program: 'exit'\nChange Check Amount/Pay Cycle: 'handle pay'${dash}`;
 const help = `Enter 'help' for a list of commands or enter 'back' to go back to Main Menu`;
 async function moneyManagementMenu() {
     let myBool = false;
