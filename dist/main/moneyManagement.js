@@ -1,7 +1,9 @@
 import input from '../helperFunctions/input.js';
 import process from 'process';
+import setUp from "../helperFunctions/moneyManagement/moneyManagementSetup.js";
+import { billsDueThisPayPeriod } from "../helperFunctions/billsDueThisPayPeriod.js";
 const dash = "\n============================================================\n";
-const cmds = `${dash}Go Back To Main Menu: 'back'\nChange Check Amount/Pay Cycle: 'handle pay'${dash}`;
+const cmds = `${dash}Go Back To Main Menu: 'back'\nExit Program: 'exit'\nSet Up Pay Info: 'set up''${dash}`;
 const help = `Enter 'help' for a list of commands or enter 'back' to go back to Main Menu`;
 async function moneyManagementMenu() {
     let myBool = false;
@@ -14,11 +16,14 @@ async function moneyManagementMenu() {
             case 'back':
                 myBool = true;
                 break;
-            case 'test':
-                console.log('test cmds');
+            case 'set up':
+                await setUp();
                 break;
             case 'exit':
                 process.exit();
+            case 'test':
+                billsDueThisPayPeriod();
+                break;
             default:
                 console.log('invalid input');
                 break;

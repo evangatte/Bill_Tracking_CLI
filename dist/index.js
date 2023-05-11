@@ -2,15 +2,15 @@ import { createNewBill, listBills, deleteBill, dueSoon, markPaid, markUnpaid, ma
 import { moneyManagement } from './main/moneyManagement.js';
 import input from './helperFunctions/input.js';
 const dash = "\n============================================================\n";
-const cmds = `${dash}Exit: 'exit'\nNew Bill 'new bill'\nList All Bills: list all\nDelete Bill: 'delete bill'\nDue Soon: 'due soon'\nMark a bill as paid: 'mark paid'\nMark bill as unpaid: 'mark unpaid'\nSync to Database: 'sync db'\nMoney Management Menu: 'mman'${dash}`;
+const cmds = `${dash}Exit: 'exit'\nNew Bill 'new bill'\nList All Bills: list all\nDelete Bill: 'delete bill'\nDue Soon: 'due soon'\nMark a bill as paid: 'mark paid'\nMark bill as unpaid: 'mark unpaid'\nMark all bills unpaid: 'mark all unpaid'\nSync to Database: 'sync db'\nMoney Management Menu: 'mman'${dash}`;
 const help = "Enter 'help' for a list of commands or enter 'exit' to end program";
 async function runProgram() {
-    let myBool = false;
-    while (!myBool) {
-        let userInput = await input(help, '\x1b[32m%s\x1b[0m');
+    let runLoop = false;
+    while (!runLoop) {
+        let userInput = await input(help);
         switch (userInput) {
             case 'exit':
-                myBool = true;
+                runLoop = true;
                 break;
             case 'help':
                 console.log(cmds);
@@ -19,7 +19,7 @@ async function runProgram() {
                 dueSoon();
                 break;
             case 'list all':
-                listBills('green');
+                listBills();
                 break;
             case 'delete bill':
                 await deleteBill();

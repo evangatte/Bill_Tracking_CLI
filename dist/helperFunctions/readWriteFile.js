@@ -8,6 +8,9 @@ function readJson() {
     return data;
 }
 function writeJson(data) {
+    data.expenses.sort(function (a, b) {
+        return a.dueDate - b.dueDate;
+    });
     const jsonString = JSON.stringify(data);
     fs.writeFileSync(billFilePath, jsonString);
     fs.close;
