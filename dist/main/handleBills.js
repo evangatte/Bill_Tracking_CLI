@@ -25,9 +25,7 @@ export async function createNewBill() {
     }
     const newBill = new Bill(billName, billAmount, dueDate, draftType, status);
     const bills = readJson();
-    console.log("Before: ", bills);
     bills.expenses.push(newBill.returnBill());
-    console.log('After: ', bills);
     writeJson(bills);
     return;
 }
@@ -118,8 +116,13 @@ export function dueSoon() {
             formattedArray.push(formattedObj, space);
         }
     });
-    table(formattedArray, 'green');
-    console.log('\n');
+    if (formattedArray.length == 0) {
+        console.log('\x1b[32m%s\x1b[0m', `\n\nNo bills due with in the next 5 days\n`);
+    }
+    else {
+        table(formattedArray, 'green');
+        console.log('\n');
+    }
 }
 export async function markPaid() {
     const bills = readJson();

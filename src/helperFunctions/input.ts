@@ -16,9 +16,6 @@ export default async function input(output: string = '', color: string = '', )  
 	let input = await inquirer.prompt({
 		name: ' ',
 		type: 'input',
-		// default(){
-		// 	return '';
-		// },
 	});
  	return input[' '];
 }

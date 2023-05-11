@@ -4,7 +4,7 @@ export default class Bill {
 	dueDate: string
 	draftType: string
 	status: string
-	// status: string
+	
 	constructor(billName: string, billAmount: string, dueDate: string, draftType: string, status: string) {
 		this.billName = billName,
 		this.billAmount = billAmount,
