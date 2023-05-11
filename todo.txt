@@ -1,9 +1,0 @@
-Add input authentication to money management setup
-
-Come up with a better way to see when your next check is coming out.
-
-Figure out a way to link this with your finance database
-
-And of course finish your ui
-
-Go back and add fix all your typescript

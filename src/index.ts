@@ -24,7 +24,6 @@ async function runProgram() {
 				dueSoon();
 				break;
 			case 'list all':
-				// listBills('green');
 				listBills();
 				break;
 			case 'delete bill':

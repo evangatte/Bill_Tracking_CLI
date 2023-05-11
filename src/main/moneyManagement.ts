@@ -15,7 +15,7 @@ async function moneyManagementMenu() {
 
 	while(!myBool) {
 		let userInput:string = await input(help, '\x1b[32m%s\x1b[0m'); // green
-		// let userInput:string = await input(help, '\x1b[34m%s\x1b[0m'); // blue
+			// let userInput:string = await input(help, '\x1b[34m%s\x1b[0m'); // blue
 		switch (userInput) {
 			case 'help':
 				console.log(cmds);
@@ -29,6 +29,7 @@ async function moneyManagementMenu() {
 			case 'exit':
 				process.exit();
 			case 'test':
+				console.log("this is incomplete and is a list of all the fridays in the month")
 				billsDueThisPayPeriod();
 				break;
 			default:
