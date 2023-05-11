@@ -4,7 +4,7 @@
 
 
 
-![alt text]("ExampleImages/image1.png")
+![]("ExampleImages/image1.png")
 
 
 
