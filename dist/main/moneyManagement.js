@@ -22,6 +22,7 @@ async function moneyManagementMenu() {
             case 'exit':
                 process.exit();
             case 'test':
+                console.log("this is incomplete and is a list of all the fridays in the month");
                 billsDueThisPayPeriod();
                 break;
             default:

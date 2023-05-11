@@ -42,7 +42,7 @@ async function runProgram() {
                 }
                 break;
             case 'sync db':
-                console.log('nope');
+                console.log('not configured yet');
                 break;
             case 'mman':
                 await moneyManagement.moneyManagementMenu();

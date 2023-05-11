@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-
-const billFilePath = path.join('/Users/evangatte/Desktop/CLIs/tscBillCli', 'bills.json');
-
-
+// dynamically get path to bills.json
+const __filename = fileURLToPath(import.meta.url);
+const billFilePath = __filename.replace('dist/helperFunctions/readWriteFile.js', 'bills.json');
 
 function readJson() {
 	let rawdata = fs.readFileSync(billFilePath, {encoding: 'utf8', flag: 'r'});
@@ -12,7 +12,6 @@ function readJson() {
 	fs.close;
 	return data
 }
-
 
 
 function writeJson(data: any) {

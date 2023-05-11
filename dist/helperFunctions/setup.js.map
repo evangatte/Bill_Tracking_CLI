@@ -1,0 +1,1 @@
+{"version":3,"file":"setup.js","sourceRoot":"","sources":["../../src/helperFunctions/setup.ts"],"names":[],"mappings":"AAGA,OAAO,EAAE,aAAa,EAAE,MAAM,KAAK,CAAC;AAGpC,MAAM,CAAC,KAAK,UAAU,aAAa;IAElC,MAAM,UAAU,GAAG,aAAa,CAAC,MAAM,CAAC,IAAI,CAAC,GAAG,CAAC,CAAC;IAClD,OAAO,CAAC,GAAG,CAAC,UAAU,CAAC,CAAC;AAwBzB,CAAC"}
