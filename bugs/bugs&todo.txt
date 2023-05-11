@@ -1,0 +1,4 @@
+Theres a error when you type cancel on the 'delete bill' menu
+
+
+Add logic incase invalid input is entered for the "check amount" section in setup
