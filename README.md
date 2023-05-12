@@ -1,7 +1,9 @@
 ### Node.js/Typescript bill tracking CLI
-- Intended to be a simple CLI used to track bills that I built for personal use and as fun practice project.
+- Intended to be a simple CLI used to track bills that I built for personal use and as fun practice project. I Also as a introduction to typescript (I definitely slacked on uitilizing the type system but ill fix that one day).
+
 - The only dependency being used is inquirer.js for user input.
 
+- All of the data is stored locally in a json file (bills.json).
 
 #### List of commands that can be entered
 ![Command List](ExampleImages/commandList.png)
