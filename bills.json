@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"expenses":[{"billName":"Test Bill 2","billAmount":"200","dueDate":"5","draftType":"Manual-draft","status":"Paid"},{"billName":"Test Bill 1","billAmount":"100","dueDate":"10","draftType":"Manual-draft","status":"Not paid"},{"billName":"Test Bill 4","billAmount":"50","dueDate":"13","draftType":"Auto-draft","status":""},{"billName":"Test Bill 3","billAmount":"250","dueDate":"15","draftType":"Manual-draft","status":"Paid"}],"moneyManagement":{"payDay":"","payPeriod":"","checkAmount":"","lastDayPaid":""}}
+=======
+{"expenses":[{"billName":"Test Bill 2","billAmount":"200","dueDate":"5","draftType":"Manual-draft","status":""},{"billName":"Test Bill 1","billAmount":"100","dueDate":"10","draftType":"Manual-draft","status":""},{"billName":"Test Bill 3","billAmount":"250","dueDate":"15","draftType":"Manual-draft","status":""}],"moneyManagement":{"payDay":"","payPeriod":"","checkAmount":"","lastDayPaid":""}}
+>>>>>>> d2329bc8429044404b702d10be7f66100f820846
