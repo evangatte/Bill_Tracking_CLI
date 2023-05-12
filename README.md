@@ -5,6 +5,12 @@
 
 - All of the data is stored locally in a json file (bills.json).
 
+
+### To Use:
+- Run `npm install` from project root.
+- run `node index.js` from the `dist` directory.
+
+
 #### List of commands that can be entered
 ![Command List](ExampleImages/commandList.png)
 - **exit** - End the program.
