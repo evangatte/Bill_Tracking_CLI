@@ -6,9 +6,29 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const billFilePath = __filename.replace('dist/helperFunctions/readWriteFile.js', 'bills.json');
 
-function readJson() {
-	let rawdata = fs.readFileSync(billFilePath, {encoding: 'utf8', flag: 'r'});
-	const data = JSON.parse(rawdata.toString());
+interface Expense {
+	billName: string;
+	billAmount: string;
+	dueDate: string;
+	draftType: string;
+	status: string;
+  }
+  
+  interface MoneyManagement {
+	payDay: string;
+	payPeriod: string;
+	checkAmount: string;
+	lastDayPaid: string;
+  }
+  
+  interface ReadBill {
+	expenses: Expense[];
+	moneyManagement: MoneyManagement;
+  }
+
+function readJson(): ReadBill {
+	let rawdata: string = fs.readFileSync(billFilePath, {encoding: 'utf8', flag: 'r'});
+	const data: ReadBill = JSON.parse(rawdata.toString());
 	fs.close;
 	return data
 }
@@ -26,4 +46,4 @@ function writeJson(data: any) {
 }
 
 
-export { writeJson, readJson };
+export { writeJson, readJson, ReadBill, Expense };

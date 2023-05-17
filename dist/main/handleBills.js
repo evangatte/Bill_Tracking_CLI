@@ -76,19 +76,22 @@ export async function deleteBill() {
         return;
     }
     listBills('red');
-    let billIndex;
+    let billIndex = 0;
     let myBool = false;
     while (!myBool) {
         let getIndex = await input('Enter the index of the bill you want to delete: (or \'cancel\' to exit)');
         if (getIndex.length === 0) {
-            console.log('invalidInput');
+            console.log('Invalid Input');
         }
-        else if ((isNaN(getIndex) === false) && ((getIndex >= 0) && (getIndex <= expensesLength))) {
-            billIndex = getIndex;
+        else if (!(isNaN(parseInt(getIndex))) && ((parseInt(getIndex) >= 0) && (parseInt(getIndex) <= expensesLength))) {
+            billIndex = parseInt(getIndex);
             myBool = true;
         }
         else if (getIndex == 'cancel') {
             return;
+        }
+        else {
+            console.log("Invalid Input");
         }
     }
     const deleteOrNot = await input(`Delete: ${bills.expenses[billIndex].billName} Y/n`);
@@ -103,7 +106,7 @@ export function dueSoon() {
     const { expenses } = readJson();
     const formattedArray = [];
     expenses.forEach((item, index) => {
-        if ((Number(item.dueDate >= currentDate)) && (Number(item.dueDate - currentDate) <= 5)) {
+        if ((parseInt(item.dueDate) >= currentDate) && (parseInt(item.dueDate) - currentDate <= 5)) {
             const space = {};
             const formattedObj = {
                 'Index': index,
@@ -132,19 +135,22 @@ export async function markPaid() {
         return;
     }
     listBills('green');
-    let billIndex;
+    let billIndex = 0;
     let myBool = false;
     while (!myBool) {
         let getIndex = await input('Enter the index of the bill you want to mark as paid: (or \'cancel\' to exit)');
         if (getIndex.length === 0) {
             console.log('invalid Input');
         }
-        else if ((isNaN(getIndex) === false) && ((getIndex >= 0) && (getIndex <= expensesLength))) {
-            billIndex = getIndex;
+        else if (!isNaN(parseInt(getIndex)) && ((parseInt(getIndex) >= 0) && (parseInt(getIndex) <= expensesLength))) {
+            billIndex = parseInt(getIndex);
             myBool = true;
         }
         else if (getIndex == 'cancel') {
             return;
+        }
+        else {
+            console.log("Invalid Input");
         }
     }
     const editOrNot = await input(`Mark: ${bills.expenses[billIndex].billName} as paid? Y/n`);
@@ -162,19 +168,22 @@ export async function markUnpaid() {
         return;
     }
     listBills('green');
-    let billIndex;
+    let billIndex = 0;
     let myBool = false;
     while (!myBool) {
         let getIndex = await input('Enter the index of the bill you want to mark as unpaid: (or \'cancel\' to exit)');
         if (getIndex.length === 0) {
             console.log('invalid Input');
         }
-        else if ((isNaN(getIndex) === false) && ((getIndex >= 0) && (getIndex <= expensesLength))) {
-            billIndex = getIndex;
+        else if (!isNaN(parseInt(getIndex)) && ((parseInt(getIndex) >= 0) && (parseInt(getIndex) <= expensesLength))) {
+            billIndex = parseInt(getIndex);
             myBool = true;
         }
         else if (getIndex == 'cancel') {
             return;
+        }
+        else {
+            console.log("Invalid Input");
         }
     }
     const editOrNot = await input(`Mark: ${bills.expenses[billIndex].billName} as unpaid? Y/n`);
