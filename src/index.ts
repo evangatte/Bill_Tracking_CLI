@@ -9,6 +9,7 @@ const help: string = "Enter 'help' for a list of commands or enter 'exit' to end
 async function runProgram(): Promise<void> {
     let stopLoop: boolean = false;
 
+	
 	while(!stopLoop) {
 		// let userInput:string = await input(help, '\x1b[32m%s\x1b[0m'); 	// green
 		let userInput:string = await input(help); 	// green
