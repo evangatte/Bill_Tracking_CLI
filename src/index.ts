@@ -6,7 +6,6 @@ const dash: string = "\n========================================================
 const cmds: string = `${dash}Exit: 'exit'\nNew Bill 'new bill'\nList All Bills: list all\nDelete Bill: 'delete bill'\nDue Soon: 'due soon'\nMark a bill as paid: 'mark paid'\nMark bill as unpaid: 'mark unpaid'\nMark all bills unpaid: 'mark all unpaid'\nSync to Database: 'sync db'\nMoney Management Menu: 'mman'${dash}`;
 const help: string = "Enter 'help' for a list of commands or enter 'exit' to end program";
 
-
 async function runProgram(): Promise<void> {
     let stopLoop: boolean = false;
 
