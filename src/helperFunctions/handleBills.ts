@@ -1,7 +1,9 @@
 import Bill from '../classes/Bill.js';
-import input from '../helperFunctions/input.js';
-import table from '../helperFunctions/createTable.js';
-import { readJson, writeJson, ReadBill, Expense } from '../helperFunctions/readWriteFile.js';
+import input from './input.js';
+import table from './createTable.js';
+import { readJson, writeJson} from './readWriteFile.js';
+import { Bills } from './readWriteFile.js';
+import { Expense } from '../Interfaces/Expense.js';
 
 
 export async function createNewBill(): Promise<void> {
@@ -28,9 +30,9 @@ export async function createNewBill(): Promise<void> {
 	}
 	//push new bill into json file
 	const newBill: Bill = new Bill(billName, billAmount, dueDate, draftType, status);
-	const bills: ReadBill = readJson();
+	const bills: Bills = readJson();
 
-	bills.expenses.push(newBill.returnBill());
+	bills.expenses.push(newBill);
 
 	writeJson(bills);
 
@@ -94,7 +96,7 @@ export function listBills(tableColor: string = ''): void {
 
 
 export async function deleteBill(): Promise<void> {
-	const bills: ReadBill = readJson();
+	const bills: Bills = readJson();
 	const expensesLength: number = bills.expenses.length
 
 	if (expensesLength === 0) {
@@ -136,7 +138,7 @@ export async function deleteBill(): Promise<void> {
 
 export function dueSoon(): void {
 	const currentDate: number = new Date().getDate();
-	const { expenses }: ReadBill = readJson();
+	const { expenses }: Bills = readJson();
 
 	type GetBills = {
 		'Index': number
@@ -177,7 +179,7 @@ export function dueSoon(): void {
 
 
 export async function markPaid(): Promise<void> {
-	const bills: ReadBill = readJson();
+	const bills: Bills = readJson();
 	const expensesLength: number = bills.expenses.length
 
 	if (expensesLength === 0) {
@@ -216,7 +218,7 @@ export async function markPaid(): Promise<void> {
 
 
 export async function markUnpaid(): Promise<void> {
-	const bills: ReadBill = readJson();
+	const bills: Bills = readJson();
 	const expensesLength = bills.expenses.length
 
 	if (expensesLength === 0) {
@@ -254,7 +256,7 @@ export async function markUnpaid(): Promise<void> {
 
 
 export async function markAllUnpaid(): Promise<void> {
-	const bills: ReadBill = readJson();
+	const bills: Bills = readJson();
 
 	bills.expenses.forEach(function(item: any) {
 		if (item.draftType === 'Manual-draft') {

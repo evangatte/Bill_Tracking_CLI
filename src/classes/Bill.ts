@@ -1,4 +1,6 @@
-export default class Bill {
+import { Expense } from "../Interfaces/Expense.js"
+
+export default class Bill implements Expense {
 	billName: string
 	billAmount: string
 	dueDate: string
@@ -11,15 +13,5 @@ export default class Bill {
 		this.dueDate = dueDate
 		this.draftType = draftType
 		this.status = status
-	}
-
-	returnBill(): { billName: string, billAmount: string, dueDate: string, draftType: string, status: string } {
-		return {
-			billName: this.billName,
-			billAmount: this.billAmount,
-			dueDate: this.dueDate,
-			draftType: this.draftType,
-			status: this.status
-		}
 	}
 }

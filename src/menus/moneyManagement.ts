@@ -2,8 +2,6 @@ import { readJson, writeJson } from "../helperFunctions/readWriteFile.js";
 import input from '../helperFunctions/input.js';
 import table from "../helperFunctions/createTable.js";
 import process from 'process'
-import setUp from "../helperFunctions/moneyManagement/moneyManagementSetup.js";
-import { billsDueThisPayPeriod } from "../helperFunctions/billsDueThisPayPeriod.js";
 
 
 
@@ -28,20 +26,15 @@ async function moneyManagementMenu() {
 			case 'back':
 				myBool = true;
 				break;
-			case 'set up':
-				await setUp();
 				break;
 			case 'exit':
 				process.exit();
-			case 'test':
-				console.log("this is incomplete and is a list of all the fridays in the month")
-				billsDueThisPayPeriod();
-				break;
 			default:
 				console.log('invalid input')
 				break;
 		}
 	}
+	
 	return
 }
 

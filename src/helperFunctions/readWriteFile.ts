@@ -1,41 +1,21 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { Bills } from '../Interfaces/Bills.js';
 
 // dynamically get path to bills.json
 const __filename = fileURLToPath(import.meta.url);
 const billFilePath = __filename.replace('dist/helperFunctions/readWriteFile.js', 'bills.json');
 
-interface Expense {
-	billName: string;
-	billAmount: string;
-	dueDate: string;
-	draftType: string;
-	status: string;
-  }
-  
-  interface MoneyManagement {
-	payDay: string;
-	payPeriod: string;
-	checkAmount: string;
-	lastDayPaid: string;
-  }
-  
-  interface ReadBill {
-	expenses: Expense[];
-	moneyManagement: MoneyManagement;
-  }
-
-function readJson(): ReadBill {
+function readJson(): Bills {
 	let rawdata: string = fs.readFileSync(billFilePath, {encoding: 'utf8', flag: 'r'});
-	const data: ReadBill = JSON.parse(rawdata.toString());
+	const data: Bills = JSON.parse(rawdata.toString());
 	fs.close;
 
 	return data
 }
 
-
-function writeJson(data: ReadBill): void {
+function writeJson(data: Bills): void {
 	data.expenses.sort(function(a: any, b: any) {
   		return a.dueDate - b.dueDate;
 	});
@@ -47,4 +27,4 @@ function writeJson(data: ReadBill): void {
 	return;
 }
 
-export { writeJson, readJson, ReadBill, Expense };
+export { writeJson, readJson, Bills };

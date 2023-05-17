@@ -6,14 +6,5 @@ export default class Bill {
         this.draftType = draftType;
         this.status = status;
     }
-    returnBill() {
-        return {
-            billName: this.billName,
-            billAmount: this.billAmount,
-            dueDate: this.dueDate,
-            draftType: this.draftType,
-            status: this.status
-        };
-    }
 }
 //# sourceMappingURL=Bill.js.map

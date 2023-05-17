@@ -1,7 +1,7 @@
 import Bill from '../classes/Bill.js';
-import input from '../helperFunctions/input.js';
-import table from '../helperFunctions/createTable.js';
-import { readJson, writeJson } from '../helperFunctions/readWriteFile.js';
+import input from './input.js';
+import table from './createTable.js';
+import { readJson, writeJson } from './readWriteFile.js';
 export async function createNewBill() {
     const billName = await input('Whats the name of this bill?');
     const billAmount = await input('Whats the amount of this bill?');
