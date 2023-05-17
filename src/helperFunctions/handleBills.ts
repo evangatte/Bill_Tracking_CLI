@@ -114,7 +114,8 @@ export async function deleteBill(): Promise<void> {
 
 		if (getIndex.length === 0) {
 			console.log('Invalid Input');
-		} else if (!(isNaN(parseInt(getIndex))) && ((parseInt(getIndex) >= 0) && (parseInt(getIndex) <= expensesLength))) {
+		} else if (!(isNaN(parseInt(getIndex))) && ((parseInt(getIndex) >= 0) && (parseInt(getIndex) <= expensesLength - 1))) {
+			console.log("test");
 			billIndex = parseInt(getIndex);
 			myBool = true;
 		} else if (getIndex == 'cancel') {
@@ -197,7 +198,7 @@ export async function markPaid(): Promise<void> {
 
 		if (getIndex.length === 0) {
 			console.log('invalid Input');
-		} else if (!isNaN(parseInt(getIndex)) && ((parseInt(getIndex) >= 0) && (parseInt(getIndex) <= expensesLength))) {
+		} else if (!isNaN(parseInt(getIndex)) && ((parseInt(getIndex) >= 0) && (parseInt(getIndex) <= expensesLength - 1))) {
 			billIndex = parseInt(getIndex);
 			myBool = true;
 		} else if (getIndex == 'cancel') {
@@ -235,7 +236,7 @@ export async function markUnpaid(): Promise<void> {
 
 		if (getIndex.length === 0) {
 			console.log('invalid Input');
-		} else if (!isNaN(parseInt(getIndex)) && ((parseInt(getIndex) >= 0) && (parseInt(getIndex) <= expensesLength))) {
+		} else if (!isNaN(parseInt(getIndex)) && ((parseInt(getIndex) >= 0) && (parseInt(getIndex) <= expensesLength - 1))) {
 			billIndex = parseInt(getIndex);	
 			myBool = true
 		} else if (getIndex == 'cancel') {
