@@ -1,26 +1,27 @@
 import { Console } from 'console';
 import { Transform } from 'stream';
-import process from 'process';
+// import process from 'process';
 
 //Function to create table that doesnt have 'index' column
-export default function table(input: object, tableColor: string = '') { 
+export default function table(input: object, tableColor: string = ''): void { 
 	// @see https://stackoverflow.com/a/67859384
-	const ts = new Transform({ transform(chunk: any, enc: any, cb: any) { cb(null, chunk) } })
-	const logger = new Console({ stdout: ts })
+	const ts: Transform = new Transform({ transform(chunk: any, enc: any, cb: any) { cb(null, chunk) } })
+	const logger: Console = new Console({ stdout: ts })
 	logger.table(input)
-	const table = (ts.read() || '').toString()
-	let result = '';
+	const table: string = (ts.read() || '').toString()
+	let result: string = '';
 	for (let row of table.split(/[\r\n]+/)) {
-	  let r = row.replace(/[^┬]*┬/, '┌');
+	  let r: string = row.replace(/[^┬]*┬/, '┌');
 	  r = r.replace(/^├─*┼/, '├');
 	  r = r.replace(/│[^│]*/, '');
 	  r = r.replace(/^└─*┴/, '└');
 	  r = r.replace(/'/g, ' ');
 	  result += `${r}\n`;
 	}
+	
 	//remove the very last new line from the table
-	const resultLength = result.length - 2
-	const newTable = result.substring(0, resultLength)
+	const resultLength: number = result.length - 2
+	const newTable: string = result.substring(0, resultLength)
 
 	console.log()	
 
@@ -33,5 +34,6 @@ export default function table(input: object, tableColor: string = '') {
 	} else {
 		console.log(newTable);
 	}
+
 	return;
 }

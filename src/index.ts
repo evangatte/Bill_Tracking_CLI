@@ -7,15 +7,15 @@ const cmds: string = `${dash}Exit: 'exit'\nNew Bill 'new bill'\nList All Bills: 
 const help: string = "Enter 'help' for a list of commands or enter 'exit' to end program";
 
 
-async function runProgram() {
-    let runLoop = false;
+async function runProgram(): Promise<void> {
+    let stopLoop: boolean = false;
 
-	while(!runLoop) {
+	while(!stopLoop) {
 		// let userInput:string = await input(help, '\x1b[32m%s\x1b[0m'); 	// green
 		let userInput:string = await input(help); 	// green
 		switch(userInput) {
 			case 'exit':
-				runLoop = true
+				stopLoop = true
 				break;
 			case 'help':
 				console.log(cmds)

@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 
 
-export default async function input(output: string = '', color: string = '', )  {
+export default async function input(output: string = '', color: string = '', ): Promise<any>  {
 
 	if (color.length != 0 && output.length != 0) {
 		console.log(color, output);
@@ -12,10 +12,10 @@ export default async function input(output: string = '', color: string = '', )  
 
 	}
 
-
 	let input = await inquirer.prompt({
 		name: ' ',
 		type: 'input',
 	});
+
  	return input[' '];
 }

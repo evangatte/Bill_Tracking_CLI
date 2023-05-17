@@ -126,6 +126,7 @@ export function dueSoon() {
         table(formattedArray, 'green');
         console.log('\n');
     }
+    return;
 }
 export async function markPaid() {
     const bills = readJson();
@@ -204,5 +205,6 @@ export async function markAllUnpaid() {
         }
     });
     writeJson(bills);
+    return;
 }
 //# sourceMappingURL=handleBills.js.map

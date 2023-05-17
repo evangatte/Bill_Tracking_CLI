@@ -2,6 +2,7 @@ import { readJson, writeJson } from "../readWriteFile.js";
 import input from "../input.js";
 import table from "../createTable.js";
 
+/*** Incomplete ***/
 
 function createDaysTable() {
 	type Day = {

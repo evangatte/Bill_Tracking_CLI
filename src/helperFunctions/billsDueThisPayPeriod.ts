@@ -2,6 +2,10 @@ import input from "./input.js";
 import { readJson, writeJson } from "./readWriteFile.js";
 
 
+
+/*** Incomplete ***/
+
+
 //returns an array of everyfriday of the month
 function getFridaysArr() {
 	var d = new Date(),

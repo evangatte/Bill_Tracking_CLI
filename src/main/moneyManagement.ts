@@ -6,6 +6,11 @@ import setUp from "../helperFunctions/moneyManagement/moneyManagementSetup.js";
 import { billsDueThisPayPeriod } from "../helperFunctions/billsDueThisPayPeriod.js";
 
 
+
+/** Incomplete **/
+
+
+
 const dash: string = "\n============================================================\n";
 const cmds: string = `${dash}Go Back To Main Menu: 'back'\nExit Program: 'exit'\nSet Up Pay Info: 'set up''${dash}`
 const help: string = `Enter 'help' for a list of commands or enter 'back' to go back to Main Menu`

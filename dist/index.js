@@ -5,12 +5,12 @@ const dash = "\n============================================================\n";
 const cmds = `${dash}Exit: 'exit'\nNew Bill 'new bill'\nList All Bills: list all\nDelete Bill: 'delete bill'\nDue Soon: 'due soon'\nMark a bill as paid: 'mark paid'\nMark bill as unpaid: 'mark unpaid'\nMark all bills unpaid: 'mark all unpaid'\nSync to Database: 'sync db'\nMoney Management Menu: 'mman'${dash}`;
 const help = "Enter 'help' for a list of commands or enter 'exit' to end program";
 async function runProgram() {
-    let runLoop = false;
-    while (!runLoop) {
+    let stopLoop = false;
+    while (!stopLoop) {
         let userInput = await input(help);
         switch (userInput) {
             case 'exit':
-                runLoop = true;
+                stopLoop = true;
                 break;
             case 'help':
                 console.log(cmds);
