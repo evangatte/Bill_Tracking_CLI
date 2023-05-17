@@ -14,7 +14,6 @@ async function moneyManagementMenu() {
             case 'back':
                 myBool = true;
                 break;
-                break;
             case 'exit':
                 process.exit();
             default:

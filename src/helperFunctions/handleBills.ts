@@ -48,7 +48,7 @@ export function listBills(tableColor: string = ''): void {
 		return;
 	}
 
-	type GetBills = {
+	type PrintBill = {
 		'Index': string
 		'Bill Name': string,
 		'Bill Amount': string,
@@ -60,11 +60,11 @@ export function listBills(tableColor: string = ''): void {
 	// loop through expenses array and format them and get total
 	let total: number = 0;
 
-	const formattedArray: (GetBills | {})[] = []; 
+	const formattedArray: (PrintBill | {})[] = []; 
 	expenses.forEach(function(item: any, index: any) {
 
 		const space: Object = {}
-		const formattedObj: GetBills = {
+		const formattedObj: PrintBill = {
 			'Index': index,
 			'Bill Name': item.billName,
 			'Bill Amount': item.billAmount,
@@ -141,7 +141,7 @@ export function dueSoon(): void {
 	const currentDate: number = new Date().getDate();
 	const { expenses }: Bills = readJson();
 
-	type GetBills = {
+	type PrintBill = {
 		'Index': number
 		'Bill Name': string,
 		'Bill Amount': string,
@@ -150,12 +150,12 @@ export function dueSoon(): void {
 		'Status': string
 
 	}
-	const formattedArray: (GetBills | {})[] = [];
+	const formattedArray: (PrintBill | {})[] = [];
 
 	expenses.forEach((item: Expense, index: number) => {
 		if ((parseInt(item.dueDate) >= currentDate) && (parseInt(item.dueDate) - currentDate <= 5)) {
 			const space = {}
-			const formattedObj: GetBills = {
+			const formattedObj: PrintBill = {
 				'Index': index,
 				'Bill Name': item.billName,
 				'Bill Amount': item.billAmount,
