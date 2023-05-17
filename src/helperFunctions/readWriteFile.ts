@@ -30,11 +30,12 @@ function readJson(): ReadBill {
 	let rawdata: string = fs.readFileSync(billFilePath, {encoding: 'utf8', flag: 'r'});
 	const data: ReadBill = JSON.parse(rawdata.toString());
 	fs.close;
+
 	return data
 }
 
 
-function writeJson(data: any) {
+function writeJson(data: ReadBill): void {
 	data.expenses.sort(function(a: any, b: any) {
   		return a.dueDate - b.dueDate;
 	});
@@ -42,8 +43,8 @@ function writeJson(data: any) {
 	const jsonString = JSON.stringify(data);
 	fs.writeFileSync(billFilePath, jsonString);
 	fs.close;
+
 	return;
 }
-
 
 export { writeJson, readJson, ReadBill, Expense };
